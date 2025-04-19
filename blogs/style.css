@@ -1,0 +1,36 @@
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 2rem;
+    background: #fdfaf6;
+    color: #333;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .blog-list article {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #ffffffbb;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+  
+  .blog-list a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .blog-post {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.8;
+  }
+  .date {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  

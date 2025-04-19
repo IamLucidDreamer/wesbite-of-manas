@@ -2,6 +2,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Georgia:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap");
 
+/* Works on WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f3e8d3; /* Light parchment tone */
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #a67c52; /* Warm brown like tree bark */
+    border-radius: 10px;
+    border: 3px solid #f3e8d3; /* Padding illusion */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8b5e3c; /* Slightly darker on hover */
+  }
+  
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a67c52 #f3e8d3;
+  }
+  
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -125,6 +153,46 @@ header {
     border-bottom: 2px solid #3a2e1e;
   }
 
+  .about-section {
+    background-color: #f8e8cc;
+    padding: 3rem 1rem;
+    font-family: 'Georgia', serif;
+    color: #2e2e2e;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2b1d0f;
+    margin-bottom: 1rem;
+  }
+  
+  .about-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  
+  .role {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #472b0b;
+  }
+  
+  .role-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+  }
+  
+
 @media (max-width: 1024px) {
   .hero {
     padding: 0rem 1.5rem;
@@ -172,6 +240,10 @@ header{
   .hero-buttons a {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+  
+  nav a{
+    margin-left: 1rem;
   }
 }
 
