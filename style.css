@@ -67,7 +67,7 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center ;
-    justify-content: center;
+    justify-content: start;
 }
 
 .hero-buttons a {
@@ -101,9 +101,37 @@ body {
   justify-content: center;
 }
 
+header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    top: 0;
+    z-index: 50;
+  }
+  
+  nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #3a2e1e;
+    font-weight: 500;
+    transition: border-bottom 0.3s ease;
+  }
+  
+  nav a:hover {
+    border-bottom: 2px solid #3a2e1e;
+  }
+
 @media (max-width: 1024px) {
   .hero {
-    padding: 0rem 2rem;
+    padding: 0rem 1.5rem;
+  }
+
+  .hero::before {
+    content: none;
   }
 
   .hero-text {
@@ -115,36 +143,38 @@ body {
     padding-top: 150px;
     flex-direction: column;
     text-align: center;
+    flex: 1;
   }
 
   .hero-text h1 {
     font-size: 3rem;
   }
+
+  .hero-buttons{
+    justify-content: center;
+  }
+
+header{
+    padding: 1.2rem 1rem;
+    justify-content: center;
+}
 }
 
-header {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  top: 0;
-  z-index: 50;
+@media (max-width: 428px) {
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
-nav a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: #3a2e1e;
-  font-weight: 500;
-  transition: border-bottom 0.3s ease;
-}
-
-nav a:hover {
-  border-bottom: 2px solid #3a2e1e;
-}
 .loader-text {
   font-family: "Georgia", serif;
   color: #6a994e;
