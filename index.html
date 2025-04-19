@@ -8,143 +8,23 @@
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("loader");
+        loader.classList.add("fade-out");
 
-      body {
-        font-family: "Inter", sans-serif;
-        background: #f5eedf;
-        color: #3a2e1e;
-      }
-
-      .hero {
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-        padding: 0rem 1rem;
-        min-height: 100vh;
-        position: relative;
-        background: url("assets/pictures/hero.png") no-repeat center center /
-          cover;
-      }
-
-      .hero::before {
-        content: "";
-        inset: 0;
-
-        z-index: 0;
-      }
-
-      .hero-content {
-        max-width: 1328px;
-        margin: auto;
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        z-index: 1;
-      }
-
-      .hero-text {
-        max-width: 500px;
-        min-width: 280px;
-        margin-bottom: 200px;
-      }
-
-      .hero-text h1 {
-        font-family: "DM Serif Display", serif;
-        font-size: 5.8rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero-text p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-buttons a {
-        display: inline-block;
-        margin-right: 1rem;
-        padding: 0.6rem 1.2rem;
-        border: 2px solid #3a2e1e;
-        border-radius: 8px;
-        text-decoration: none;
-        color: #3a2e1e;
-        background-color: #fff5e5;
-        font-weight: 600;
-        transition: background 0.3s;
-      }
-
-      .hero-buttons a:hover {
-        background-color: #ffe8c2;
-      }
-
-      .hero-image {
-        position: absolute;
-        right: 0;
-      }
-
-      .hero-image img {
-        max-width: 100%;
-        margin: 0%;
-        padding: 0%;
-        display: flex;
-        align-items: end;
-        justify-content: center;
-      }
-
-      @media (max-width: 768px) {
-        .hero {
-          padding: 0rem 2rem;
-        }
-
-        .hero-content {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .hero-text h1 {
-          font-size: 2.2rem;
-        }
-      }
-
-      header {
-        position: fixed;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.2rem 2rem;
-        top: 0;
-        z-index: 50;
-      }
-
-
-      nav a {
-        margin-left: 1.5rem;
-        text-decoration: none;
-        font-size: 1.2rem;
-        color: #3a2e1e;
-        font-weight: 500;
-        transition: border-bottom 0.3s ease;
-      }
-
-      nav a:hover {
-        border-bottom: 2px solid #3a2e1e;
-      }
-    </style>
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 1000);
+      });
+    </script>
   </head>
   <body>
+    <div class="loader-wrapper" id="loader">
+      <div class="loader"></div>
+      <p class="loader-text">Winds are whispering...</p>
+    </div>
     <header>
       <div></div>
       <nav>
