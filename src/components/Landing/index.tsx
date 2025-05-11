@@ -85,7 +85,7 @@ export default function Home() {
       <Image
         fill={true}
         alt="background"
-        src="/images/20250702_1528_Abstract Sphere Reflection_remix_01jz58z4swfhass7f6cy3j9zwd.png"
+        src="/images/hero_bg.png"
         className={styles.backgroundImage}
       />
 
