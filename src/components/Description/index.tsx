@@ -6,7 +6,7 @@ import Rounded from "../../common/RoundedButton";
 
 export default function index() {
   const phrase =
-    "Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.";
+    "Results-driven Software Engineer with 3+ years of experience in full-stack development, system architecture, and web performance optimization.";
   const description = useRef<HTMLDivElement>(null);
   const isInView = useInView(description as React.RefObject<Element>);
 
@@ -19,6 +19,7 @@ export default function index() {
               <span key={index} className={styles.mask}>
                 <motion.span
                   variants={slideUp}
+                  transition={{ delay: index * 5 }}
                   custom={index}
                   animate={isInView ? "open" : "closed"}
                   key={index}
@@ -30,8 +31,8 @@ export default function index() {
           })}
         </p>
         <motion.p variants={opacity} animate={isInView ? "open" : "closed"}>
-          The combination of my passion for design, code & interaction positions
-          me in a unique place in the web design world.
+          The combination of my passion for design, code & technology
+          puts me in a unique place in the tech world.
         </motion.p>
         <div data-scroll data-scroll-speed={0.1}>
           <Rounded className={styles.button}>
