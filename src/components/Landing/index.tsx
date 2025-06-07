@@ -83,9 +83,11 @@ export default function Home() {
       </video> */}
 
       <Image
+      data-scroll
+        data-scroll-speed={0.1}
         fill={true}
         alt="background"
-        src="/images/hero_bg.png"
+        src="/images/bg_hero.png"
         className={styles.backgroundImage}
       />
 
