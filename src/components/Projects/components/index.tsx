@@ -5,10 +5,12 @@ import styles from "./style.module.scss";
 export default function index({
   index,
   title,
+  company,
   manageModal,
 }: {
   index: number;
   title: string;
+  company: string;
   manageModal: (isOpen: boolean, index: number, x: number, y: number) => void;
 }) {
   return (
@@ -21,8 +23,8 @@ export default function index({
       }}
       className={styles.project}
     >
-      <h2>{title}</h2>
-      <p>Design & Development</p>
+      <h2>{company}</h2>
+      <p>{title}</p>
     </div>
   );
 }

@@ -36,3 +36,20 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .project{
+        padding: 20px 6px;
+        align-items: center;
+        gap: 10px;
+
+        h2{
+            font-size: 24px;
+        }
+
+        p{
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+}
