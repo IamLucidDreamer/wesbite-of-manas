@@ -43,7 +43,7 @@ const slider2 = [
 
 export default function index() {
 
-    const container = useRef(null);
+    const container = useRef<HTMLDivElement>(null!);
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["start end", "end start"]
@@ -52,10 +52,11 @@ export default function index() {
     const x1 = useTransform(scrollYProgress, [0, 1], [0, 150])
     const x2 = useTransform(scrollYProgress, [0, 1], [0, -150])
     const height = useTransform(scrollYProgress, [0, 0.9], [50, 0])
+    const MotionDiv = motion.div as React.FC<any>;
 
     return (
         <div ref={container} className={styles.slidingImages}>
-            <motion.div style={{x: x1}} className={styles.slider}>
+            <MotionDiv style={{x: x1}} className={styles.slider}>
                     {
                         slider1.map( (project, index) => {
                             return <div key={index} className={styles.project} style={{backgroundColor: project.color}} >
@@ -68,8 +69,8 @@ export default function index() {
                             </div>
                         })
                     }
-                </motion.div>
-                <motion.div style={{x: x2}} className={styles.slider}>
+                </MotionDiv>
+                <MotionDiv style={{x: x2}} className={styles.slider}>
                     {
                         slider2.map( (project, index) => {
                             return <div key={index} className={styles.project} style={{backgroundColor: project.color}} >
@@ -82,10 +83,10 @@ export default function index() {
                             </div>
                         })
                     }
-                </motion.div>
-                <motion.div style={{height}} className={styles.circleContainer}>
+                </MotionDiv>
+                <MotionDiv style={{height}} className={styles.circleContainer}>
                     <div className={styles.circle}></div>
-                </motion.div>
+                </MotionDiv>
         </div>
     )
 }
