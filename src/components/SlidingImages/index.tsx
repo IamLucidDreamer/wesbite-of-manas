@@ -41,7 +41,7 @@ const slider2 = [
     }
 ]
 
-export default function index() {
+export default function SlidingImage() {
 
     const container = useRef<HTMLDivElement>(null!);
     const { scrollYProgress } = useScroll({
@@ -52,6 +52,7 @@ export default function index() {
     const x1 = useTransform(scrollYProgress, [0, 1], [0, 150])
     const x2 = useTransform(scrollYProgress, [0, 1], [0, -150])
     const height = useTransform(scrollYProgress, [0, 0.9], [50, 0])
+    // eslint-disable-next-line
     const MotionDiv = motion.div as React.FC<any>;
 
     return (

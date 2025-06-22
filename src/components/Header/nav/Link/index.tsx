@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { slide, scale } from '../../animation';
 
-export default function Index({data, isActive, setSelectedIndicator} : {
+export default function LinkComp({data, isActive, setSelectedIndicator} : {
   data: { title: string; href: string; index: number },
   isActive: boolean,
   setSelectedIndicator: (href: string) => void
@@ -11,7 +11,8 @@ export default function Index({data, isActive, setSelectedIndicator} : {
   
     const { title, href, index} = data;
   
-      const MotionDiv = motion.div as React.FC<any>;
+    // eslint-disable-next-line
+    const MotionDiv = motion.div as React.FC<any>;
 
     return (
       <MotionDiv

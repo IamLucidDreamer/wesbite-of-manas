@@ -30,11 +30,12 @@ const navItems = [
   },
 ]
 
-export default function index() {
+export default function Header() {
 
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
+   // eslint-disable-next-line
   const MotionDiv = motion.div as React.FC<any>;
 
   return (

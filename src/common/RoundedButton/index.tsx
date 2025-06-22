@@ -4,10 +4,9 @@ import styles from './style.module.scss';
 import gsap from 'gsap';
 import Magnetic from '../Magnetic';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   backgroundColor?: string;
-  [key: string]: any;
 }
 
 export default function Index({
@@ -22,7 +21,6 @@ export default function Index({
   useEffect(() => {
     if (!circle.current) return;
 
-    // Initialize timeline once
     timeline.current = gsap.timeline({ paused: true });
     timeline.current
       .to(

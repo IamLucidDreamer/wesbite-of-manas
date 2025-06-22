@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 interface MagneticProps {
-  children: React.ReactElement<any>; // Accept any valid React element
+  children: React.ReactNode;
 }
 
 export default function Magnetic({ children }: MagneticProps) {
@@ -45,8 +45,9 @@ export default function Magnetic({ children }: MagneticProps) {
     };
   }, []);
 
-  // Type assertion to bypass TS error – safe if child forwards ref
-  return React.cloneElement(children, {
-    ref: magneticRef,
-  } as React.HTMLAttributes<HTMLElement>);
+  return (
+    <div ref={magneticRef} style={{ display: 'inline-block' }}>
+      {children}
+    </div>
+  );
 }

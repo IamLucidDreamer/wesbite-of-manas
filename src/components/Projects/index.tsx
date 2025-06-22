@@ -51,6 +51,7 @@ export default function Home() {
   const cursor = useRef<HTMLDivElement>(null);
   const cursorLabel = useRef<HTMLDivElement>(null);
 
+  // eslint-disable-next-line
   const MotionDiv = motion.div as React.FC<any>;
 
   const xMoveContainer = useRef<ReturnType<typeof gsap.quickTo> | null>(null);

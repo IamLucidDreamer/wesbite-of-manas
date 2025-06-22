@@ -16,7 +16,7 @@ const words = [
   "नमस्ते"
 ];
 
-export default function Index() {
+export default function Preloader() {
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -54,6 +54,7 @@ export default function Index() {
     },
   };
 
+  // eslint-disable-next-line
   const MotionDiv = motion.div as React.FC<any>;
 
   return (

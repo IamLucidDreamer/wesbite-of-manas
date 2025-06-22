@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { slideUp, opacity } from "./animation";
 import Rounded from "../../common/RoundedButton";
 
-export default function index() {
+export default function Description() {
   const phrase =
     "Results-driven Software Engineer with 3+ years of experience in full-stack development, system architecture, and web performance optimization.";
   const description = useRef<HTMLDivElement>(null);

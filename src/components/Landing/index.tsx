@@ -52,6 +52,7 @@ export default function Home() {
     xPercent += 0.1 * direction;
   };
 
+   // eslint-disable-next-line
   const MotionMain = motion.main as React.FC<any>;
 
   return (

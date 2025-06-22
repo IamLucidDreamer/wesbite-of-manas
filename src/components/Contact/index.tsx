@@ -2,13 +2,13 @@ import styles from './style.module.scss';
 import Image from 'next/image';
 import Rounded from '../../common/RoundedButton';
 import { useRef } from 'react';
-import { useScroll, motion, useTransform, useSpring } from 'framer-motion';
+import { useScroll, motion, useTransform } from 'framer-motion';
 import Magnetic from '../../common/Magnetic';
 
-export default function index() {
-    const container = useRef<HTMLElement>(null!);
+export default function Contact() {
+    const container = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
-        target: container,
+        target: container as React.RefObject<HTMLElement>,
         offset: ["start end", "end end"]
     })
     const x = useTransform(scrollYProgress, [0, 1], [0, 100])
@@ -22,6 +22,7 @@ export default function index() {
     } ${hours >= 12 ? 'PM' : 'AM'}`;
     const currentYear = date.getFullYear();
 
+    // eslint-disable-next-line
     const MotionDiv = motion.div as React.FC<any>;
     return (
         <MotionDiv style={{y}} ref={container} className={styles.contact}>
@@ -35,7 +36,7 @@ export default function index() {
                             src={`/images/hero_bg.png`}
                             />
                         </div>
-                        <h2>Let's work</h2>
+                        <h2>Let&apos;s work</h2>
                     </span>
                     <h2>together</h2>
                     <MotionDiv style={{x}} className={styles.buttonContainer}>
