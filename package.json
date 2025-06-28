@@ -1,0 +1,29 @@
+{
+  "name": "website-of-manas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.3.4",
+    "framer-motion": "^10.13.0",
+    "gsap": "^3.12.2",
+    "locomotive-scroll": "^5.0.0-beta.8",
+    "sass": "^1.64.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "@eslint/eslintrc": "^3"
+  }
+}
