@@ -13,6 +13,7 @@ const words = [
   "Hallå",
   "Guten tag",
   "Hallo",
+  "नमस्ते"
 ];
 
 export default function Index() {
