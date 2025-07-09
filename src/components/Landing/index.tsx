@@ -11,6 +11,7 @@ import Magnetic from "@/common/Magnetic";
 export default function Home() {
   const firstText = useRef(null);
   const secondText = useRef(null);
+  const thirdText = useRef(null);
   const slider = useRef(null);
   let xPercent = 0;
   let direction = -1;
@@ -48,6 +49,7 @@ export default function Home() {
     }
     gsap.set(firstText.current, { xPercent: xPercent });
     gsap.set(secondText.current, { xPercent: xPercent });
+    gsap.set(thirdText.current, { xPercent: xPercent });
     requestAnimationFrame(animate);
     xPercent += 0.1 * direction;
   };
@@ -96,6 +98,7 @@ export default function Home() {
         <div ref={slider} className={styles.slider}>
           <p ref={firstText}>Manas Shukla -</p>
           <p ref={secondText}>Manas Shukla -</p>
+          <p ref={thirdText}>Manas Shukla -</p>
         </div>
       </div>
       <Magnetic>
