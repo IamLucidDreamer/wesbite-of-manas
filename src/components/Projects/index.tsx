@@ -12,19 +12,19 @@ const projects = [
     company: "Ionic Wealth by Angel One",
     title: "Founding Engineer",
     src: "ionic_landing_hero.png",
-    color: "#363ca8",
+    color: "#d6d7dc",
   },
   {
     company: "Unacademy",
     title: "Software Engineer",
     src: "unacademy.png",
-    color: "#3C4852",
+    color: "#e3e5e7",
   },
   {
-    company:"Scenes by Avalon",
+    company: "Scenes by Avalon",
     title: "Software Engineer",
     src: "scenes.png",
-    color: "#EFE8D3",
+    color: "#e3e3e3",
   },
 ];
 
@@ -116,6 +116,13 @@ export default function Home() {
     setModal({ active, index });
   };
 
+  const handleResumeClick = () => {
+    window.open(
+      "https://resume.ofmanas.com",
+      "_blank"
+    );
+  };
+
   return (
     <main
       onMouseMove={(e) => {
@@ -123,10 +130,8 @@ export default function Home() {
       }}
       className={styles.projects}
     >
-      <h2>
-        Experiences
-      </h2>
       <div className={styles.body}>
+        <h2 className={styles?.experience}>Experiences</h2>
         {projects.map((project, index) => {
           return (
             <Project
@@ -139,9 +144,9 @@ export default function Home() {
           );
         })}
       </div>
-      <Rounded>
-        <p>View Resume</p>
-      </Rounded>
+        <Rounded onClick={handleResumeClick}>
+          <p>View Resume</p>
+        </Rounded>
       <>
         <MotionDiv
           ref={modalContainer}
