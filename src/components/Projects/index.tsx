@@ -17,7 +17,7 @@ const projects = [
   {
     company: "Unacademy",
     title: "Software Engineer",
-    src: "unacademy-image.png.png",
+    src: "unacademy-image.png",
     color: "#e3e5e7",
   },
   {
