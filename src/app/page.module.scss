@@ -1,0 +1,21 @@
+.bannerHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+.headerText {
+  font-weight: 300;
+  font-size: 0.875rem; /* equivalent to text-sm */
+  text-align: center;
+  padding: 0 1rem; /* equivalent to px-4 */             
+    color: inherit; /* Inherits text color from parent */
+    transition: color 0.4s linear;
+}

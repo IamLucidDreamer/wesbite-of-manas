@@ -22,6 +22,14 @@ export default function Contact() {
     } ${hours >= 12 ? 'PM' : 'AM'}`;
     const currentYear = date.getFullYear();
 
+    const handleEmailClick = () => {
+        window.location.href = `mailto:shuklamanasofficial@gmail.com`;
+    }
+
+    const handlePhoneClick = () => {
+        window.location.href = `tel:+919569050543`;
+    }
+
     // eslint-disable-next-line
     const MotionDiv = motion.div as React.FC<any>;
     return (
@@ -40,7 +48,7 @@ export default function Contact() {
                     </span>
                     <h2>together</h2>
                     <MotionDiv style={{x}} className={styles.buttonContainer}>
-                        <Rounded  backgroundColor={"#334BD3"} className={styles.button}>
+                        <Rounded  backgroundColor={"#334BD3"} className={styles.button} onClick={handleEmailClick}>
                             <p>Get in touch</p>
                         </Rounded>
                     </MotionDiv>
@@ -49,10 +57,10 @@ export default function Contact() {
                     </motion.svg>
                 </div>
                 <div className={styles.nav}>
-                        <Rounded>
-                            <p>email@ofmanas.com</p>
+                        <Rounded onClick={handleEmailClick}>
+                            <p>shuklamanasofficial@gmail.com</p>
                         </Rounded>
-                        <Rounded>
+                        <Rounded onClick={handlePhoneClick}>
                             <p>+91 9569050543</p>
                         </Rounded>
                 </div>
@@ -64,24 +72,18 @@ export default function Contact() {
                         </span>
                         <span>
                             <h3>Version</h3>
-                            <p>{time}</p>
+                            <p>v2025.07.23</p>
                         </span>
                     </div>
                     <div>
                         <span>
                             <h3>socials</h3>
                             <Magnetic>
-                                <p>Awwwards</p>
+                                <a href='https://github.com/iamluciddreamer' target='_blank' rel='noopener noreferrer'>Github</a>
                             </Magnetic>
                         </span>
                         <Magnetic>
-                            <p>Instagram</p>
-                        </Magnetic>
-                        <Magnetic>
-                            <p>Dribbble</p>
-                        </Magnetic>
-                        <Magnetic>
-                            <p>Linkedin</p>
+                            <a href='https://www.linkedin.com/in/shuklamanas007/' target='_blank' rel='noopener noreferrer'>Linkedin</a>
                         </Magnetic>
                     </div>
                 </div>

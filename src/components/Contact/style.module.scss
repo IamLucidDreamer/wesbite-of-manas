@@ -87,12 +87,12 @@
                 display: flex;
                 gap: 10px;
                 align-items: flex-end;
-                p, h3{
+                p, h3, a{
                     margin: 0px;
                     padding: 2.5px;
                     cursor: pointer;
                 }
-                p{
+                p, a{
                     &::after{
                         content: "";
                         width: 0%;
@@ -121,6 +121,13 @@
                     cursor: default;
                     font-weight: 300;
                     font-size: 1em;
+                }
+                a{
+                    color: white;
+                    font-weight: 300;
+                    font-size: 1em;
+                    text-decoration: none;
+                    transition: color 0.2s linear;
                 }
             }
             

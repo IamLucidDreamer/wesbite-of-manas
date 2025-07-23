@@ -45,8 +45,15 @@ export default function Home() {
     };
   }, []);
 
+const innerWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+
   return (
     <main className={styles.main} ref={scrollRef} data-scroll-container>
+      <div className={styles.bannerHeader}>
+          <h3 className={styles.headerText}>
+            Welcome to my updated portfolio! It's still under development, so you might run into a few quirks — but exciting updates are on the way!
+          </h3>
+      </div>
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
@@ -54,8 +61,12 @@ export default function Home() {
       <Landing />
       <Description />
       <Projects />
+      { innerWidth > 768 &&
+      <>
       <SlidingImages />
-      <Contact />
+       <Contact />
+      </>
+      }
     </main>
   );
 }
