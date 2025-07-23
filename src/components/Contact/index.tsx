@@ -16,10 +16,6 @@ export default function Contact() {
     const rotate = useTransform(scrollYProgress, [0, 1], [120, 90])
 
     const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const time = `${hours}:${minutes < 10 ? '0' + minutes : minutes
-    } ${hours >= 12 ? 'PM' : 'AM'}`;
     const currentYear = date.getFullYear();
 
     const handleEmailClick = () => {
