@@ -19,3 +19,9 @@
     color: inherit; /* Inherits text color from parent */
     transition: color 0.4s linear;
 }
+
+@media (max-width: 640px) {
+  .bannerHeader {
+    height: 60px; /* Adjusted height for smaller screens */
+  }
+}
