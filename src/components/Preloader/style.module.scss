@@ -1,11 +1,11 @@
 .introduction{
-    height: 100vh;
+    height: 100svh;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 99;
+    z-index: 999;
     background-color: #000000;
     svg{
         position: absolute;
