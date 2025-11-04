@@ -1,5 +1,30 @@
 body {
   margin: 0px;
-  overflow: hidden; /* Hide scrollbars */
   cursor: wait;
+}
+
+/* Allow scrolling on mobile devices */
+@media (max-width: 768px) {
+  body {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  html {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure main container allows scrolling on mobile */
+  [data-scroll-container] {
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
+
+/* Hide scrollbars on desktop but allow scrolling */
+@media (min-width: 769px) {
+  body {
+    overflow: hidden;
+  }
 }
