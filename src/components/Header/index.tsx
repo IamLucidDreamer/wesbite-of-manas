@@ -20,12 +20,22 @@ export default function Header() {
   }, [pathname]);
 
   useLayoutEffect(() => {
+    if (globalThis.window === undefined) return;
+    
+    // On mobile, always show the button (CSS handles this, but ensure GSAP doesn't override)
+    const isMobile = globalThis.window.innerWidth <= 768;
+    if (isMobile && button.current) {
+      gsap.set(button.current, { scale: 1 });
+      return;
+    }
+    
+    // Desktop: use ScrollTrigger to show/hide button
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(button.current, {
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
-        end: window.innerHeight,
+        end: globalThis.window.innerHeight,
         onLeave: () => {
           gsap.to(button.current, {
             scale: 1,
