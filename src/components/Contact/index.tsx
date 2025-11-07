@@ -28,8 +28,11 @@ export default function Contact() {
 
     // eslint-disable-next-line
     const MotionDiv = motion.div as React.FC<any>;
+
+    // eslint-disable-next-line
+    const MotionSection = motion.section as React.FC<any>;
     return (
-        <MotionDiv style={{y}} ref={container} className={styles.contact}>
+        <MotionSection style={{y}} ref={container} className={styles.contact} aria-labelledby="contact-heading">
             <div className={styles.body}>
                 <div className={styles.title}>
                     <span>
@@ -84,6 +87,6 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
-        </MotionDiv>
+        </MotionSection>
     )
 }
