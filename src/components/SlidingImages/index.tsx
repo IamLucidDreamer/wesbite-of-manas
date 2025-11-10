@@ -6,15 +6,15 @@ import Image from "next/image";
 const slider1 = [
   {
     color: "#d6d7dc",
-    src: "landing_page/ulearn.png",
+    src: "landing_page/ionic-latest.png",
   },
   {
     color: "#e3e5e7",
-    src: "ionic_landing_hero.png",
+    src: "landing_page/ionic_landing_hero.png",
   },
   {
     color: "#e3e3e3",
-    src: "unacademy-image.png",
+    src: "landing_page/unacademy-image.png",
   },
   {
     color: "#f4f4f4",
@@ -25,7 +25,7 @@ const slider1 = [
 const slider2 = [
   {
     color: "#e5e0e1",
-    src: "landing_page/the-motivate-kids.png",
+    src: "landing_page/nature-good-life.png",
   },
   {
     color: "#d4e3ec",
@@ -33,11 +33,11 @@ const slider2 = [
   },
   {
     color: "#d7d4cf",
-    src: "landing_page/the-fence-sitter.png",
+    src: "landing_page/ulearn.png",
   },
   {
     color: "#e1dad6",
-    src: "landing_page/nature-good-life.png",
+    src: "landing_page/scenes.png",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function SlidingImage() {
               <div className={styles.imageContainer}>
                 <Image
                   fill={true}
-                  alt={"image"}
+                  alt={`Project showcase - ${project.src.split('/').pop()?.replace('.png', '').replace(/-/g, ' ')}`}
                   src={`/images/${project.src}`}
                 />
               </div>
@@ -86,7 +86,7 @@ export default function SlidingImage() {
               <div key={index} className={styles.imageContainer}>
                 <Image
                   fill={true}
-                  alt={"image"}
+                  alt={`Project showcase - ${project.src.split('/').pop()?.replace('.png', '').replace(/-/g, ' ')}`}
                   src={`/images/${project.src}`}
                 />
               </div>
