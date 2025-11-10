@@ -54,9 +54,10 @@
     }
   
     .description{
-      position: absolute;
+      position: relative;
+      width: 100vw;
       top: 50%;
-      left: 70%;
+      left: 65%;
       color: white;
       font-size: 24px;
       font-weight: 300;
