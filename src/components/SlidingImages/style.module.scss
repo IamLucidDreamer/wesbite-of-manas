@@ -44,3 +44,28 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .slidingImages{
+        margin-top: 100px;
+        .slider{
+            width: 200vw;
+            left: -50vw;
+            gap: 4vw;
+            .project{
+                width: 40%;
+                height: 30vw;
+                .imageContainer{
+                    width: 90%;
+                    height: 90%;
+                }
+            }
+        }
+        .circleContainer{
+            margin-top: 50px;
+            .circle{
+                height: 800%;
+            }
+        }
+    }
+}

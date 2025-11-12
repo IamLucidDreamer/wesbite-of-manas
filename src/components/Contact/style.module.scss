@@ -133,5 +133,53 @@
             
         }
     }
-    
+}
+
+@media screen and (max-width: 768px) {
+    .contact{
+        .body{
+            padding-top: 100px;
+            .title{
+                margin-left: 20px;
+                margin-right: 20px;
+                padding-bottom: 50px;
+                h2{
+                    font-size: 8vw;
+                }
+                .buttonContainer{
+                    position: relative;
+                    left: 0;
+                    top: 20px;
+                    margin-top: 20px;
+                }
+                .button{
+                    width: 120px;
+                    height: 120px;
+                    position: relative;
+                    p{
+                        font-size: 14px;
+                    }
+                }
+                svg{
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    margin-top: 20px;
+                }
+            }
+            .nav{
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 50px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .info{
+                flex-direction: column;
+                gap: 30px;
+                margin-top: 100px;
+                padding: 20px;
+            }
+        }
+    }
 }
