@@ -45,8 +45,6 @@ export default function Home() {
     };
   }, []);
 
-const innerWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-
   return (
     <main className={styles.main} ref={scrollRef} data-scroll-container>
       <AnimatePresence mode="wait">
@@ -56,12 +54,8 @@ const innerWidth = typeof window !== "undefined" ? window.innerWidth : 0;
       <Landing />
       <Description />
       <Projects />
-      { innerWidth > 768 &&
-      <>
       <SlidingImages />
-       <Contact />
-      </>
-      }
+      <Contact />
     </main>
   );
 }
