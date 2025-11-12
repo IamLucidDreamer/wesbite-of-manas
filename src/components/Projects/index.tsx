@@ -11,20 +11,23 @@ const projects = [
   {
     company: "Ionic Wealth by Angel One",
     title: "Founding Engineer",
-    src: "ionic_landing_hero.png",
+    src: "landing_page/ionic-latest.png",
     color: "#d6d7dc",
+    link: "https://www.ionic.in/",
   },
   {
     company: "Unacademy",
     title: "Software Engineer",
-    src: "unacademy-image.png",
+    src: "landing_page/unacademy-image.png",
     color: "#e3e5e7",
+    link: "https://www.unacademy.com/",
   },
   {
     company: "Scenes by Avalon",
     title: "Software Engineer",
-    src: "scenes.png",
+    src: "landing_page/scenes.png",
     color: "#e3e3e3",
+    link: "https://in.linkedin.com/company/graphy-community-platform",
   },
 ];
 
@@ -139,7 +142,8 @@ export default function Home() {
               title={project.title}
               company={project.company}
               manageModal={manageModal}
-              key={index}
+              key={index + project.link}
+              link={project.link}
             />
           );
         })}
