@@ -7,14 +7,19 @@ export default function Projects({
   title,
   company,
   manageModal,
+  link,
 }: {
   index: number;
   title: string;
   company: string;
   manageModal: (isOpen: boolean, index: number, x: number, y: number) => void;
+  link: string;
 }) {
   return (
     <div
+      onClick={() => {
+        window.open(link, "_blank");
+      }}
       onMouseEnter={(e) => {
         manageModal(true, index, e.clientX, e.clientY);
       }}
