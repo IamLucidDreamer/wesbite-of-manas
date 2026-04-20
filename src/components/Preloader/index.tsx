@@ -46,11 +46,11 @@ export default function Preloader() {
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any }, // eslint-disable-line @typescript-eslint/no-explicit-any
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any, delay: 0.3 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any, delay: 0.3 }, // eslint-disable-line @typescript-eslint/no-explicit-any
     },
   };
 
@@ -59,6 +59,7 @@ export default function Preloader() {
 
   return (
     <MotionDiv
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       variants={slideUp as any}
       initial="initial"
       exit="exit"
@@ -66,6 +67,7 @@ export default function Preloader() {
     >
       {dimension.width > 0 && (
         <>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <motion.p variants={opacity as any} initial="initial" animate="enter">
             <span></span>
             {words[index]}

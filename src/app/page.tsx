@@ -117,7 +117,7 @@ export default function Home() {
 
       {/* ── Technologies ─────────────────────── */}
       <section
-        id="technologies"
+        id="stack"
         className={styles.section}
         aria-label="Tech stack"
       >

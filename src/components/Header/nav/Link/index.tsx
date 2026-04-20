@@ -19,11 +19,13 @@ export default function LinkComp({ data, isActive, setSelectedIndicator, onClose
       className={styles.link}
       onMouseEnter={() => setSelectedIndicator(href)}
       custom={index}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       variants={slide as any}
       initial="initial"
       animate="enter"
       exit="exit"
     >
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <MotionDiv variants={scale as any} animate={isActive ? "open" : "closed"} className={styles.indicator} />
       <Link href={href} onClick={onClose}>{title}</Link>
     </MotionDiv>

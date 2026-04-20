@@ -26,6 +26,7 @@
   font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.03em;
+  margin-bottom: 24px;
   transition: color 0.2s ease;
 
   &:hover {
@@ -43,7 +44,6 @@
 }
 
 .header {
-  padding-top: 80px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 72px;
@@ -234,8 +234,12 @@
     padding: 0 24px;
   }
 
+  .nav {
+    padding-top: 80px;
+  }
+
   .header {
-    padding-top: 56px;
+    padding-bottom: 18px;
   }
 
   .article {
