@@ -1,0 +1,35 @@
+---
+title: "Micro-Frontend Architecture: What I Learned Migrating a Fintech Platform"
+date: "2025-11-10"
+description: "How we moved from a monolithic React app to a micro-frontend architecture at Ionic Wealth what worked, what didn't, and the tradeoffs no one talks about."
+tags: ["architecture", "micro-frontends", "react", "fintech"]
+readTime: "8 min"
+---
+
+When I joined Ionic Wealth as the first engineering hire, we had a single React app doing everything. Eighteen months later, we had decomposed it into independently deployable modules. Here's what that journey actually looked like.
+
+## Why we moved
+
+The monolith wasn't broken it was fast to start with. But as the product grew across CRM, client-facing flows, and admin tooling, every deploy became a coordinated event. A bug fix in one module required a full regression pass on three others.
+
+The trigger was onboarding. KYC is compliance-critical and high-churn we were iterating on it weekly. Coupling it to the rest of the app made fast iteration expensive and risky.
+
+## The approach
+
+We didn't rewrite. We extracted. Starting with the highest-change-frequency module (onboarding), we wrapped it behind a well-defined contract: shared auth state, a design token system, and a routing protocol.
+
+Module Federation (Webpack 5) handled runtime composition. Each module had its own CI pipeline and could be deployed independently.
+
+## What no one talks about
+
+**Shared state is the hard part.** Routing and auth felt solved. Shared component state across modules especially things like notification banners, global modals, and user session data required deliberate architecture. We ended up with a lightweight event bus.
+
+**Build caches get complicated.** Each module has its own `node_modules`. Dependency drift between modules caused subtle runtime errors that were hard to debug. Lockfile discipline and shared dependency manifests became mandatory.
+
+**The DX tax is real.** Local development with three simultaneous dev servers and hot module replacement across module boundaries is not seamless. We invested in a developer proxy that unified the experience, but it took time.
+
+## Was it worth it?
+
+For us, yes. We went from full-team coordination on every deploy to teams shipping their modules independently, same week. Onboarding iteration velocity roughly doubled.
+
+The architecture is right when the pain of coordination exceeds the pain of distribution. For a founding-stage team with one module changing constantly, that threshold arrived earlier than I expected.

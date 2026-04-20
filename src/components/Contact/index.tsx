@@ -4,6 +4,7 @@ import Rounded from '../../common/RoundedButton';
 import { useRef } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import Magnetic from '../../common/Magnetic';
+import homeData from '../../../content/home.json';
 
 export default function Contact() {
     const container = useRef<HTMLElement>(null);
@@ -19,11 +20,11 @@ export default function Contact() {
     const currentYear = date.getFullYear();
 
     const handleEmailClick = () => {
-        window.location.href = `mailto:shuklamanasofficial@gmail.com`;
+        window.location.href = `mailto:${homeData.contact.email}`;
     }
 
     const handlePhoneClick = () => {
-        window.location.href = `tel:+919569050543`;
+        window.location.href = `tel:${homeData.contact.phone.replace(/\s/g, '')}`;
     }
 
     // eslint-disable-next-line
@@ -57,10 +58,10 @@ export default function Contact() {
                 </div>
                 <div className={styles.nav}>
                         <Rounded onClick={handleEmailClick}>
-                            <p>shuklamanasofficial@gmail.com</p>
+                            <p>{homeData.contact.email}</p>
                         </Rounded>
                         <Rounded onClick={handlePhoneClick}>
-                            <p>+91 9569050543</p>
+                            <p>{homeData.contact.phone}</p>
                         </Rounded>
                 </div>
                 <div className={styles.info}>
@@ -78,11 +79,11 @@ export default function Contact() {
                         <span>
                             <h3>socials</h3>
                             <Magnetic>
-                                <a href='https://github.com/iamluciddreamer' target='_blank' rel='noopener noreferrer'>Github</a>
+                                <a href={homeData.contact.github} target='_blank' rel='noopener noreferrer'>Github</a>
                             </Magnetic>
                         </span>
                         <Magnetic>
-                            <a href='https://www.linkedin.com/in/shuklamanas007/' target='_blank' rel='noopener noreferrer'>Linkedin</a>
+                            <a href={homeData.contact.linkedin} target='_blank' rel='noopener noreferrer'>Linkedin</a>
                         </Magnetic>
                     </div>
                 </div>

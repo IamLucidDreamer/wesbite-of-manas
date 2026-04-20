@@ -6,30 +6,9 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
 import Rounded from "../../common/RoundedButton";
+import homeData from "../../../content/home.json";
 
-const projects = [
-  {
-    company: "Ionic Wealth by Angel One",
-    title: "Founding Engineer",
-    src: "landing_page/ionic-latest.png",
-    color: "#d6d7dc",
-    link: "https://www.ionic.in/",
-  },
-  {
-    company: "Unacademy",
-    title: "Software Engineer",
-    src: "landing_page/unacademy-image.png",
-    color: "#e3e5e7",
-    link: "https://www.unacademy.com/",
-  },
-  {
-    company: "Scenes by Avalon",
-    title: "Software Engineer",
-    src: "landing_page/scenes.png",
-    color: "#e3e3e3",
-    link: "https://in.linkedin.com/company/graphy-community-platform",
-  },
-];
+const projects = homeData.experiences;
 
 const scaleAnimation = {
   initial: { scale: 0, x: "-50%", y: "-50%" },
@@ -69,7 +48,6 @@ export default function Home() {
     if (!modalContainer.current || !cursor.current || !cursorLabel.current)
       return;
 
-    // Move modal
     xMoveContainer.current = gsap.quickTo(modalContainer.current, "left", {
       duration: 0.8,
       ease: "power3",
@@ -78,8 +56,6 @@ export default function Home() {
       duration: 0.8,
       ease: "power3",
     });
-
-    // Move cursor
     xMoveCursor.current = gsap.quickTo(cursor.current, "left", {
       duration: 0.5,
       ease: "power3",
@@ -88,8 +64,6 @@ export default function Home() {
       duration: 0.5,
       ease: "power3",
     });
-
-    // Move cursor label
     xMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, "left", {
       duration: 0.45,
       ease: "power3",
@@ -113,44 +87,39 @@ export default function Home() {
     active: boolean,
     index: number,
     x: number,
-    y: number
+    y: number,
   ) => {
     moveItems(x, y);
     setModal({ active, index });
   };
 
-  const handleResumeClick = () => {
-    window.open(
-      "https://resume.ofmanas.com",
-      "_blank"
-    );
-  };
-
   return (
     <main
-      onMouseMove={(e) => {
-        moveItems(e.clientX, e.clientY);
-      }}
+      onMouseMove={(e) => moveItems(e.clientX, e.clientY)}
       className={styles.projects}
     >
-      <div className={styles.body}>
-        <h2 className={styles?.experience}>Experiences</h2>
-        {projects.map((project, index) => {
-          return (
-            <Project
-              index={index}
-              title={project.title}
-              company={project.company}
-              manageModal={manageModal}
-              key={index + project.link}
-              link={project.link}
-            />
-          );
-        })}
+      <div className={styles.sectionHeader}>
+        <span className={styles.label}>02 Experience</span>
+        <div className={styles.line} />
       </div>
-        <Rounded onClick={handleResumeClick}>
-          <p>View Resume</p>
-        </Rounded>
+
+      <div className={styles.body}>
+        {projects.map((project, index) => (
+          <Project
+            key={index + project.link}
+            index={index}
+            title={project.title}
+            company={project.company}
+            manageModal={manageModal}
+            link={project.link}
+          />
+        ))}
+      </div>
+
+      <Rounded onClick={() => window.open(homeData.contact.resume, "_blank")}>
+        <p>View Resume</p>
+      </Rounded>
+
       <>
         <MotionDiv
           ref={modalContainer}
@@ -163,23 +132,20 @@ export default function Home() {
             style={{ top: index * -100 + "%" }}
             className={styles.modalSlider}
           >
-            {projects.map((project, index) => {
-              const { src, color } = project;
-              return (
-                <div
-                  className={styles.modal}
-                  style={{ backgroundColor: color }}
-                  key={`modal_${index}`}
-                >
-                  <Image
-                    src={`/images/${src}`}
-                    width={380}
-                    height={0}
-                    alt="image"
-                  />
-                </div>
-              );
-            })}
+            {projects.map((project, index) => (
+              <div
+                key={`modal_${index}`}
+                className={styles.modal}
+                style={{ backgroundColor: project.color }}
+              >
+                <Image
+                  src={`/images/${project.src}`}
+                  width={380}
+                  height={0}
+                  alt={project.company}
+                />
+              </div>
+            ))}
           </div>
         </MotionDiv>
         <MotionDiv
@@ -188,7 +154,7 @@ export default function Home() {
           variants={scaleAnimation}
           initial="initial"
           animate={active ? "enter" : "closed"}
-        ></MotionDiv>
+        />
         <MotionDiv
           ref={cursorLabel}
           className={styles.cursorLabel}

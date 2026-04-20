@@ -1,0 +1,90 @@
+{
+  "landing": {
+    "name": "Manas Shukla",
+    "role": ["Senior", "Software Engineer"]
+  },
+  "description": {
+    "headline": "I build full-stack products fast, reliable, and production-ready. Four years shipping at scale across fintech and edtech, from founding-team zero-to-one to high-traffic platforms serving millions.",
+    "subtext": ""
+  },
+  "experiences": [
+    {
+      "company": "Project Drone",
+      "title": "Senior Software Engineer, Founding Team",
+      "period": "Sept 2025 – Mar 2026",
+      "src": "",
+      "color": "",
+      "link": "https://www.linkedin.com/in/shuklamanas007/",
+      "bullets": [
+        "Owned KYC onboarding end-to-end as technical lead architecture and UX for a compliance-critical, high-volume user entry point",
+        "Benchmarked KYC flows across Zerodha, Angel One, Upstox, Groww, and Dhan redesigned to reduce friction and improve conversion",
+        "Defined org-wide frontend standards including a reusable design system and starter templates, improving velocity and cross-product consistency"
+      ]
+    },
+    {
+      "company": "Ionic Wealth",
+      "title": "Founding Engineer",
+      "period": "Jan 2024 – Sept 2025",
+      "src": "landing_page/ionic-latest.png",
+      "color": "#d6d7dc",
+      "link": "https://www.ionic.in/",
+      "bullets": [
+        "First engineering hire built a fintech wealth management platform from zero to production across frontend, backend APIs, and mobile",
+        "Led migration from monolithic frontend to micro-frontend architecture, enabling parallel development and faster, safer releases",
+        "Built and shipped a React Native mobile app on the same backend platform, ensuring cross-platform consistency and performance"
+      ]
+    },
+    {
+      "company": "Unacademy",
+      "title": "Software Engineer",
+      "period": "Jan 2022 – Jan 2024",
+      "src": "landing_page/unacademy-image.png",
+      "color": "#e3e5e7",
+      "link": "https://www.unacademy.com/",
+      "bullets": [
+        "Led React performance audits on Unacademy VIP resolved rendering and data-fetching bottlenecks, improving page load times by ~70%",
+        "Built a self-serve subscription management system for upgrades, renewals, and cancellations significantly reduced support dependency",
+        "Engineered a cloud-based video transcoding pipeline, optimizing delivery and playback consistency across varying network conditions"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "CRM & Client App",
+      "company": "Ionic Wealth",
+      "description": "Production-grade CRM and client-facing app supporting internal ops and end-user workflows. Applied micro-frontend architecture for modularity and delivery speed.",
+      "link": "https://www.ionic.in/"
+    },
+    {
+      "name": "VIP",
+      "company": "Unacademy",
+      "description": "High-traffic premium learning platform. Designed a self-serve subscription system (upgrades, renewals, cancellations) and integrated live class infrastructure at scale.",
+      "link": "https://unacademy.com/"
+    },
+    {
+      "name": "Scenes Community Platform",
+      "company": "Unacademy",
+      "description": "B2B white-labelled community SaaS. Led React performance audits improved load times by ~80% and significantly enhanced stability on low-end devices.",
+      "link": "https://unacademy.com/"
+    }
+  ],
+  "technologies": {
+    "Languages": ["JavaScript (ES6+)", "TypeScript", "Python", "HTML5", "CSS3"],
+    "Frontend": ["React", "Next.js", "Redux", "React Query", "Tailwind", "Material UI"],
+    "Architecture": ["Design Systems", "Micro-frontends", "SSR", "ISR", "Core Web Vitals", "Web Performance", "Accessibility (WCAG, ARIA)"],
+    "Mobile": ["React Native (Expo, CLI)"],
+    "Backend": ["Python", "Django", "FastAPI", "Node.js", "REST APIs", "Authentication", "Background Jobs"],
+    "Testing & Quality": ["Jest", "React Testing Library", "Pytest", "Playwright"],
+    "Cloud & Tooling": ["AWS", "Docker", "GitHub Actions", "CI/CD", "Deployment Pipelines"],
+    "Monitoring & Analytics": ["Sentry", "Datadog", "LogRocket", "Google Analytics", "Amplitude", "Mixpanel"],
+    "AI-Assisted Dev": ["Claude", "GitHub Copilot", "Prompt Engineering", "AI Code Generation", "Automated Documentation"]
+  },
+  "updatedAt": "2026-04-20",
+  "contact": {
+    "email": "shuklamanasofficial@gmail.com",
+    "phone": "+91 9569050543",
+    "github": "https://github.com/iamluciddreamer",
+    "linkedin": "https://www.linkedin.com/in/shuklamanas007/",
+    "resume": "https://resume.ofmanas.com"
+  }
+}

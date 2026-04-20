@@ -1,30 +1,61 @@
-body {
-  margin: 0px;
-  cursor: wait;
+/* ── Design tokens ─────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-2: #111111;
+  --bg-3: #1a1a1a;
+  --text: #edebe6;
+  --text-2: rgba(237, 235, 230, 0.88);
+  --text-3: rgba(237, 235, 230, 0.62);
+  --border: rgba(237, 235, 230, 0.12);
+  --accent: #f59e0b;
+  --accent-hover: #e6a700;
+  --sliding-bg: #161617;
+  --contact-bg: #0a0a0a;
 }
 
-/* Allow scrolling on mobile devices */
+[data-theme="light"] {
+  --bg: #f2eee8;
+  --bg-2: #e8e3db;
+  --bg-3: #fafaf8;
+  --text: #0c0b09;
+  --text-2: rgba(12, 11, 9, 0.88);
+  --text-3: rgba(12, 11, 9, 0.62);
+  --border: rgba(12, 11, 9, 0.18);
+  --accent: #cf6502;
+  --accent-hover: #ba5c04;
+  --sliding-bg: #ffffff;
+  --contact-bg: #0c0b09;
+}
+
+/* ── Base ───────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+/* ── Mobile ─────────────────────────────────── */
 @media (max-width: 768px) {
-  body {
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  
+  body,
   html {
     overflow: auto !important;
     -webkit-overflow-scrolling: touch;
-  }
-
-  /* Ensure main container allows scrolling on mobile */
-  [data-scroll-container] {
-    overflow: visible !important;
-    height: auto !important;
-  }
-}
-
-/* Hide scrollbars on desktop but allow scrolling */
-@media (min-width: 769px) {
-  body {
-    overflow: hidden;
   }
 }

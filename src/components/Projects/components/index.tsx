@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 
-export default function Projects({
+export default function Project({
   index,
   title,
   company,
@@ -17,19 +17,15 @@ export default function Projects({
 }) {
   return (
     <div
-      onClick={() => {
-        window.open(link, "_blank");
-      }}
-      onMouseEnter={(e) => {
-        manageModal(true, index, e.clientX, e.clientY);
-      }}
-      onMouseLeave={(e) => {
-        manageModal(false, index, e.clientX, e.clientY);
-      }}
+      onClick={() => window.open(link, "_blank")}
+      onMouseEnter={(e) => manageModal(true, index, e.clientX, e.clientY)}
+      onMouseLeave={(e) => manageModal(false, index, e.clientX, e.clientY)}
       className={styles.project}
     >
-      <h2>{company}</h2>
-      <p>{title}</p>
+      <span className={styles.index}>0{index + 1}</span>
+      <span className={styles.company}>{company}</span>
+      <span className={styles.role}>{title}</span>
+      <span className={styles.arrow}>↗</span>
     </div>
   );
 }

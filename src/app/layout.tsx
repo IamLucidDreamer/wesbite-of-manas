@@ -1,9 +1,15 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-import Header from '../components/Header';
+import { Inter, Syne } from "next/font/google";
+import Header from "../components/Header";
+import { ThemeProvider } from "../context/ThemeContext";
 import type { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["400", "600", "700", "800"],
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ofmanas.com";
 
@@ -32,9 +38,7 @@ export const metadata: Metadata = {
   creator: "Manas Shukla",
   publisher: "Manas Shukla",
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -71,11 +75,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add your verification codes here when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-  },
   category: "portfolio",
 };
 
@@ -108,14 +107,8 @@ export default function RootLayout({
       "TypeScript",
     ],
     alumniOf: [
-      {
-        "@type": "Organization",
-        name: "Unacademy",
-      },
-      {
-        "@type": "Organization",
-        name: "Ionic Wealth by Angel One",
-      },
+      { "@type": "Organization", name: "Unacademy" },
+      { "@type": "Organization", name: "Ionic Wealth by Angel One" },
     ],
     worksFor: [
       {
@@ -127,16 +120,23 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${inter.variable} ${syne.variable}`}>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>
-        <Header />
-        {children}
+      <body>
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

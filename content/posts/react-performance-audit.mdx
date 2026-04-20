@@ -1,0 +1,50 @@
+---
+title: "How We Cut Page Load Times by 70% on a High-Traffic React App"
+date: "2025-08-20"
+description: "A practical walkthrough of the React performance audit I ran at Unacademy VIP the profiling tools, the bottlenecks we found, and the fixes that actually moved the needle."
+tags: ["react", "performance", "web vitals", "optimization"]
+readTime: "10 min"
+---
+
+Unacademy VIP served millions of learners. When I joined the team, the platform was functional but slow LCP was painfully high, and INP was failing on mid-range Android devices. Here's the systematic approach we took to fix it.
+
+## Start with measurement, not assumptions
+
+The first instinct is to look for obvious culprits large bundles, synchronous fetches, unnecessary re-renders. Fight that instinct. Profile first.
+
+We used three tools in combination:
+
+- **Chrome DevTools Performance panel** for render flame graphs
+- **React DevTools Profiler** for component-level timing
+- **Web Vitals Chrome Extension** for real-user conditions simulation
+
+The biggest surprise: our LCP bottleneck wasn't JavaScript at all. It was a full-bleed hero image served at 3x the required resolution without lazy loading or `srcset`.
+
+## The rendering bottlenecks
+
+Once images were handled, the profiler revealed a class of problem I've seen in most large React apps: **prop-drilling-induced over-rendering**.
+
+A global user context was updating on every navigation event. Forty-plus components subscribed to it via `useContext`. Every navigation re-rendered all forty.
+
+The fix was context splitting separating high-frequency state (active route, scroll position) from low-frequency state (user profile, permissions). Combined with selective `memo` and `useMemo` on expensive subtrees, this alone dropped the render work by ~60%.
+
+## Data fetching was the other half
+
+We were waterfalling requests. The page would render a shell, fire a user fetch, wait for it to resolve, then fire a content fetch. Two sequential round trips before anything useful was on screen.
+
+React Query's prefetching on hover and route-level data fetching with Next.js solved this. We prefetched the most likely next page on hover of navigation links the fetch was almost always complete by the time the user clicked.
+
+## What actually moved the LCP number
+
+In order of impact:
+
+1. Image optimization (WebP, correct sizing, priority hints) ~35% improvement
+2. Context splitting and render reduction ~20% improvement
+3. Request parallelization ~15% improvement
+4. Bundle splitting for rarely-used routes ~5% improvement
+
+The remaining gains came from smaller wins: font display swap, preconnecting to API origins, removing unused polyfills.
+
+## The lesson
+
+Performance work is empirical, not intuitive. The improvements you expect are rarely the ones that matter. Profile, measure, fix, re-measure. The tools exist use them before touching code.

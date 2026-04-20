@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/all";
 import { slideUp } from "./animation";
 import { motion } from "framer-motion";
 import Magnetic from "@/common/Magnetic";
+import homeData from "../../../content/home.json";
 
 export default function Home() {
   const firstText = useRef(null);
@@ -97,9 +98,9 @@ export default function Home() {
 
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider} aria-hidden="true">
-          <p ref={firstText}>Manas Shukla -</p>
-          <p ref={secondText}>Manas Shukla -</p>
-          <p ref={thirdText}>Manas Shukla -</p>
+          <p ref={firstText}>{homeData.landing.name} -</p>
+          <p ref={secondText}>{homeData.landing.name} -</p>
+          <p ref={thirdText}>{homeData.landing.name} -</p>
         </div>
       </div>
       <Magnetic>
@@ -117,9 +118,9 @@ export default function Home() {
               fill="white"
             />
           </svg>
-          <h1 style={{ display: 'none' }}>Manas Shukla - Full Stack Engineer</h1>
-          <p aria-label="Full Stack Engineer">Full Stack</p>
-          <p>Engineer</p>
+          <h1 style={{ display: 'none' }}>{homeData.landing.name} - {homeData.landing.role.join(' ')}</h1>
+          <p aria-label={homeData.landing.role.join(' ')}>{homeData.landing.role[0]}</p>
+          <p>{homeData.landing.role[1]}</p>
         </div>
       </Magnetic>
     </MotionMain>

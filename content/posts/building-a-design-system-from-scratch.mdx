@@ -1,0 +1,94 @@
+---
+title: "Building a Design System from Scratch"
+date: "2026-04-15"
+description: "What I learned after building three design systems at different scale tokens, components, and the stuff nobody warns you about."
+tags: ["design systems", "frontend", "react"]
+readTime: "6 min read"
+---
+
+Every company I've worked at eventually reaches the same inflection point: the codebase has grown, there are seventeen slightly different shades of grey in production, and every engineer is solving button hover states independently. That's when someone says _"we need a design system"_ and usually I'm the one who ends up building it.
+
+Here's what I've learned after doing this three times.
+
+## Start with tokens, not components
+
+The instinct is to jump straight into building a `Button` component. Resist it. If your tokens aren't locked down first, you'll end up rebuilding everything when the brand refreshes.
+
+Tokens are just variables with semantic meaning:
+
+```ts
+const tokens = {
+  color: {
+    brand: {
+      primary: "#6C63FF",
+      primaryHover: "#5A52D5",
+    },
+    surface: {
+      base: "#1C1D20",
+      elevated: "#2A2B2F",
+    },
+    text: {
+      primary: "#FFFFFF",
+      secondary: "#A0A0A0",
+    },
+  },
+  spacing: {
+    xs: "4px",
+    sm: "8px",
+    md: "16px",
+    lg: "24px",
+    xl: "48px",
+  },
+};
+```
+
+Export these as CSS custom properties so design tools and code stay in sync. Every component should reference tokens, never raw hex values.
+
+## The component API is the hard part
+
+Writing the component is easy. Deciding its API is where you'll spend the most time and where most design systems go wrong.
+
+Two failure modes I've seen repeatedly:
+
+**Too rigid** every variant is a boolean prop, and when the designer wants a subtle new variant you're cutting a release. Teams work around your system instead of with it.
+
+**Too flexible** you expose every CSS property as a prop. Now you have an inline-style wrapper and zero consistency. The system provides no value.
+
+The sweet spot: handle 90% of cases with clean, named variants. Expose one escape hatch (`className` or `style`) for the remaining 10%, and document it as an escape hatch so engineers feel the friction.
+
+```tsx
+// Good
+<Button variant="primary" size="md" />
+<Button variant="ghost" size="sm" />
+
+// Escape hatch use sparingly
+<Button variant="primary" className={styles.customOverride} />
+```
+
+## Document the _why_, not the _what_
+
+Your component already tells engineers what it does. Storybook shows them how it looks. What neither of these tools communicate is _why_ a particular decision was made.
+
+Document constraints. If you chose `border-radius: 4px` because it aligns with the brand's "sharp but approachable" positioning write that down. If you set a minimum touch target of 44px because of WCAG 2.5.5 write that down. Without the rationale, the next engineer treats it as an arbitrary number and overrides it.
+
+## Versioning and breaking changes
+
+Design systems are APIs. Treat them like one.
+
+- Patch: bug fixes, no visual change
+- Minor: new variants, new components, backward-compatible
+- Major: renamed props, removed variants, visual overhauls
+
+Set up [Chromatic](https://www.chromatic.com) or a visual regression tool before you ship. Breaking visual changes are hard to catch in code review and easy to catch with a screenshot diff.
+
+## The cultural part is harder than the technical part
+
+A design system only works if people use it. I've seen technically excellent systems gather dust because the team wasn't involved in building it.
+
+Involve designers and engineers early. Run working sessions, not just demos. When someone finds a gap in the system, make contributing easy a lightweight RFC process, not a committee. The goal is a system that grows with the product, not one that slows it down.
+
+---
+
+The systems I'm most proud of weren't the most technically sophisticated. They were the ones the team actually loved using.
+
+If you're starting one good luck. Feel free to reach out if you want to compare notes.

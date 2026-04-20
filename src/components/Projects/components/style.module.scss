@@ -1,55 +1,82 @@
-.project{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 100px 50px 100px;
-    border-top: 1px solid rgb(201, 201, 201);
-    cursor: pointer;
-    transition: all 0.2s;
+.project {
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+  color: var(--text);
 
-    h2{
-        font-size: 60px;
-        margin: 0px;
-        font-weight: 400;
-        transition: all 0.4s;
+  &:last-of-type {
+    border-bottom: 1px solid var(--border);
+  }
+
+  &:hover {
+    opacity: 0.45;
+
+    .company {
+      transform: translateX(8px);
     }
 
-    p{
-        transition: all 0.4s;
-        font-weight: 300;
+    .arrow {
+      transform: translateX(4px) translateY(-4px);
     }
-
-    &:last-of-type{
-        border-bottom: 1px solid rgb(201, 201, 201);
-    }
-
-    &:hover{
-        opacity: 0.5;
-
-        h2{
-            transform: translateX(-10px);
-        }
-
-        p{
-            transform: translateX(10px);
-        }
-    }
+  }
 }
 
-@media (max-width: 1000px) {
-    .project{
-        padding: 20px 6px;
-        align-items: center;
-        gap: 10px;
+.index {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+}
 
-        h2{
-            font-size: 24px;
-        }
+.company {
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+  color: var(--text);
+}
 
-        p{
-            font-size: 16px;
-            text-align: center;
-        }
+.role {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-2);
+  margin: 0;
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+  letter-spacing: 0.02em;
+}
+
+.arrow {
+  font-size: 20px;
+  color: var(--text-3);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1), color 0.2s ease;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .project {
+    grid-template-columns: 32px 1fr auto;
+    gap: 12px;
+    padding: 20px 0;
+
+    .arrow {
+      display: none;
     }
+  }
+
+  .company {
+    font-size: 22px;
+  }
+
+  .role {
+    font-size: 13px;
+  }
 }
