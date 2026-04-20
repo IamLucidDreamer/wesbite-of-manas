@@ -1,0 +1,41 @@
+---
+title: "Building a Design System as a Solo Engineer"
+date: "2025-03-18"
+description: "You don't need a dedicated design systems team to ship one that works. Here's how I built and maintained one at a fintech startup that actually got used."
+tags: ["design-systems", "react", "frontend", "dx"]
+readTime: "6 min"
+---
+
+Design systems are often framed as a team-sized problem a platform team, a dedicated designer, a Figma library with versioned tokens. At Ionic Wealth, I built one as the sole frontend engineer with a Figma file, a handful of components, and a strong opinion about what "done" means.
+
+## Why bother at a startup
+
+The argument against a design system at early stage is speed: just ship the component inline, you can abstract later. That's true until you have three slightly different button variants across four flows, inconsistent spacing that makes the app feel cheap, and a new hire who has no idea which pattern to follow.
+
+We hit this wall at around month four. The cost of consistency debt was showing up in design reviews, in user feedback, and in the time I spent answering "which component do I use for this?" when we started bringing in contract work.
+
+## What I actually built
+
+Not a comprehensive Storybook with 200 components. A small, opinionated foundation:
+
+- **Design tokens** as CSS custom properties color, typography scale, spacing, border radius, shadow
+- **12 core components** Button, Input, Select, Checkbox, Modal, Toast, Skeleton, Card, Badge, Divider, Avatar, Spinner
+- **A starter template** a Next.js app pre-wired with the token system, ESLint config, folder structure, and CI setup
+
+The starter template was the highest-leverage piece. New features started from a base that was already consistent.
+
+## The discipline required
+
+A design system is only as good as the discipline around it. For a solo engineer, that means:
+
+**Resist adding one-offs.** Every time I was tempted to add a prop for a specific use case, I asked: is this a variant, or is this a product concern leaking into the component? Product concerns belong in the page, not the component.
+
+**Version breaking changes.** Even internally, when a component's API changes, update all call sites at once. Never leave deprecated props around "temporarily."
+
+**Document the why, not the what.** The component's name and props are self-evident. What isn't self-evident is why the API is shaped the way it is, and what use cases it intentionally doesn't support.
+
+## What I'd do differently
+
+I'd introduce tokens earlier before components, not alongside them. Tokens are the lowest-effort, highest-consistency investment you can make. If every component uses `--color-primary` instead of hardcoded hex values, theming and rebrand work becomes trivial.
+
+A design system is a product. Treat it like one scope it, prioritize it, and resist scope creep. The goal isn't completeness; it's eliminating the decisions that slow down every feature.

@@ -1,0 +1,126 @@
+---
+title: "GSAP ScrollTrigger in Next.js The Right Way"
+date: "2026-03-28"
+description: "GSAP and Next.js can be tricky together. Here's how I structure scroll animations to avoid hydration errors, memory leaks, and jank."
+tags: ["gsap", "nextjs", "animation", "performance"]
+readTime: "8 min read"
+---
+
+GSAP is the most capable animation library in the JavaScript ecosystem. Next.js is the framework I reach for on almost every project. Getting them to work together cleanly took me longer than I'd like to admit.
+
+This is the setup I've landed on after building animation-heavy interfaces with both.
+
+## The hydration problem
+
+The first thing you'll hit: GSAP reads DOM geometry (`getBoundingClientRect`, `offsetHeight`, etc.) at animation time. But Next.js renders on the server, where there's no DOM. If you initialize GSAP in the wrong place, you'll get hydration mismatches or silent failures.
+
+The rule is simple: **all GSAP code goes inside `useLayoutEffect` or `useEffect`, never at the module level**.
+
+```tsx
+// ❌ Don't do this
+gsap.registerPlugin(ScrollTrigger);
+const tl = gsap.timeline(); // runs on the server
+
+// ✅ Do this
+useLayoutEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
+  const ctx = gsap.context(() => {
+    // your animations
+  }, containerRef);
+
+  return () => ctx.revert(); // cleanup
+}, []);
+```
+
+## Use `gsap.context()` always
+
+`gsap.context()` is the most underused GSAP feature. It scopes all animations to a container element, which means:
+
+1. Cleanup is a single `ctx.revert()` call no chasing down individual tweens
+2. Selector strings work relative to the container, not the whole document
+3. React strict mode (which double-invokes effects) won't leave zombie animations
+
+```tsx
+const containerRef = useRef<HTMLDivElement>(null);
+
+useLayoutEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.from(".card", {
+      opacity: 0,
+      y: 60,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".card",
+        start: "top 80%",
+      },
+    });
+  }, containerRef); // scope to containerRef
+
+  return () => ctx.revert();
+}, []);
+```
+
+## ScrollTrigger and Locomotive Scroll
+
+If you're using Locomotive Scroll (or any virtual scroll library), native ScrollTrigger won't work out of the box it listens to the `window` scroll event, but Locomotive intercepts that and transforms elements via CSS instead.
+
+The fix is to proxy Locomotive's scroll position into ScrollTrigger:
+
+```tsx
+locoScroll.on("scroll", ScrollTrigger.update);
+
+ScrollTrigger.scrollerProxy(containerRef.current, {
+  scrollTop(value) {
+    if (arguments.length && locoScroll) {
+      locoScroll.scrollTo(value as number, { duration: 0, disableLerp: true });
+    }
+    return locoScroll ? locoScroll.scroll.instance.scroll.y : 0;
+  },
+  getBoundingClientRect() {
+    return {
+      top: 0,
+      left: 0,
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  },
+});
+```
+
+Then call `ScrollTrigger.refresh()` after Locomotive finishes its initial render.
+
+## The `quickTo` pattern for interactive animations
+
+For cursor followers, magnetic effects, or anything that tracks mouse position, don't use a standard tween use `quickTo`. It creates an optimized setter that skips GSAP's overhead for rapid-fire updates.
+
+```tsx
+const xTo = gsap.quickTo(elementRef.current, "x", {
+  duration: 0.6,
+  ease: "power3",
+});
+const yTo = gsap.quickTo(elementRef.current, "y", {
+  duration: 0.6,
+  ease: "power3",
+});
+
+const handleMouseMove = (e: MouseEvent) => {
+  xTo(e.clientX);
+  yTo(e.clientY);
+};
+```
+
+The difference in smoothness compared to `gsap.to()` in a mousemove handler is immediately noticeable.
+
+## Performance checklist
+
+Before shipping any GSAP-heavy page:
+
+- [ ] All ScrollTrigger instances are killed in the cleanup function
+- [ ] `will-change: transform` is set on animated elements
+- [ ] Animations only transform `opacity` and `transform` never `width`, `height`, `top`, `left`
+- [ ] `gsap.ticker.lagSmoothing(0)` is called to avoid jumpy animations after browser throttling
+- [ ] Pin spacers aren't accumulating across route changes (call `ScrollTrigger.refresh()` on route change)
+
+---
+
+GSAP is worth the learning curve. Once you internalize the context/cleanup pattern, animation-heavy UIs become surprisingly maintainable.

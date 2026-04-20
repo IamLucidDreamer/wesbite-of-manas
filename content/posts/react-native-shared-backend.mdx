@@ -1,0 +1,39 @@
+---
+title: "Sharing a Backend Between Web and React Native Without Losing Your Mind"
+date: "2025-06-05"
+description: "When we built the Ionic Wealth mobile app on the same backend as the web platform, the architecture decisions we made early determined everything that followed."
+tags: ["react-native", "mobile", "architecture", "api-design"]
+readTime: "7 min"
+---
+
+When Ionic Wealth decided to ship a mobile app, the goal was clear: same backend, shared business logic where possible, independent UI. In practice, that constraint shapes every architectural decision you make.
+
+## The shared layer
+
+Our backend was Django + FastAPI, serving REST APIs consumed by the web frontend. The mobile app needed to hit the same endpoints user auth, portfolio data, transaction history, KYC status.
+
+The first question was client-side state management. The web app used React Query. We used it on mobile too, via the same query key conventions. Cache invalidation, background refetch, and optimistic updates same mental model, same code patterns.
+
+This was the right call. When we added a new API endpoint, both surfaces got consistent caching behavior without separate implementations.
+
+## Where web and mobile diverge
+
+**Navigation** is fundamentally different. Web uses URL-based routing; React Native uses a stack/tab navigator. We maintained separate navigation trees but shared the same screen-level logic via custom hooks. The hook fetches data and handles state; the screen component renders it in a platform-appropriate way.
+
+**Auth token handling** diverged. Web stored tokens in httpOnly cookies. React Native used SecureStore (Expo). The API didn't care but the client auth layer was duplicated, which introduced a small but real maintenance surface.
+
+**Network conditions** are different. Mobile apps regularly deal with flaky connections. We added optimistic updates with rollback on all mutation endpoints, and built a lightweight offline queue for actions taken while disconnected. The web app didn't need this.
+
+## What to share vs. keep separate
+
+After shipping, here's the heuristic I'd apply again:
+
+**Share:** API query/mutation logic, data transformation utilities, validation schemas, business logic hooks.
+
+**Keep separate:** Navigation, styling, platform-specific interactions (gestures, haptics, camera), auth token storage.
+
+The trap is trying to share UI components. We built a few "shared" components that worked on both platforms. They became unmaintainable full of `Platform.OS` conditionals that made neither surface's code readable.
+
+## The outcome
+
+We shipped the mobile app four months after the web platform. Because the backend was already production-hardened and the query logic was shared, the mobile sprint was almost entirely UI work. That's the leverage you want from a shared architecture.

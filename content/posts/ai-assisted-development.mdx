@@ -1,0 +1,35 @@
+---
+title: "AI-Assisted Development: What Actually Changed in My Workflow"
+date: "2026-02-12"
+description: "After a year of integrating Claude, Copilot, and prompt engineering into daily development, here's an honest account of what changed, what didn't, and what I got wrong initially."
+tags: ["ai", "developer-tools", "productivity", "workflow"]
+readTime: "5 min"
+---
+
+I was skeptical of AI coding tools for longer than I should have been. Then I used them seriously for six months and updated my opinion. Here's what that actually looked like.
+
+## What changed immediately
+
+**Boilerplate and scaffolding.** The first obvious win was generating the skeleton of things I knew how to write but didn't want to type. API route handlers, form validation schemas, test setup files the 80% that's mechanical and the 20% that's specific to your context.
+
+Copilot handles this well for established patterns. For more novel or context-heavy work, I shifted to Claude with explicit context about the codebase, constraints, and what I was trying to achieve.
+
+**Documentation.** I write almost no inline documentation during development. After a feature is done, I describe it to the model and ask for a concise summary of the architectural decisions and non-obvious constraints. Better output than most documentation written in-flow, because it's written with full context of the outcome.
+
+## What took longer to figure out
+
+**Verification is now the skill.** The bottleneck shifted. It used to be writing; now it's reading and verifying. AI output is often plausible but wrong in subtle ways especially around edge cases, library API details, and security considerations.
+
+I got burned a few times early on by accepting generated code too quickly. The fix was simple: treat AI output like code from a smart but unfamiliar contributor. Read it carefully before merging it.
+
+**Prompt engineering is a real skill.** Vague prompts return vague, generic code. The more context you provide the data shape, the constraints, the existing patterns in the codebase the more useful the output. Writing a good prompt is often as much work as writing a first draft, but the output quality difference is significant.
+
+## What didn't change
+
+Debugging complex runtime issues is still manual. AI can suggest hypotheses, but tracing through a specific execution path in a specific codebase with specific state requires direct observation. The tools help, but they don't replace it.
+
+Architecture decisions are still yours. The model can describe tradeoffs, but it doesn't know your team's strengths, your deployment constraints, or what you'll need to maintain six months from now. Use it to stress-test your thinking, not to make the call.
+
+## The honest assessment
+
+The engineers getting the most out of these tools aren't using them to avoid thinking they're using them to compress the parts of the job that don't require it, so more time goes to the parts that do. That framing changed how I approach it.
