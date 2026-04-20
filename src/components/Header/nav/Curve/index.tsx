@@ -18,11 +18,11 @@ export default function Index() {
     },
     enter: {
         d: targetPath,
-        transition: {duration: 1, ease: [0.76, 0, 0.24, 1] as any}
+        transition: {duration: 1, ease: [0.76, 0, 0.24, 1] as any} // eslint-disable-line @typescript-eslint/no-explicit-any
     },
     exit: {
         d: initialPath,
-        transition: {duration: 0.8, ease: [0.76, 0, 0.24, 1] as any}
+        transition: {duration: 0.8, ease: [0.76, 0, 0.24, 1] as any} // eslint-disable-line @typescript-eslint/no-explicit-any
     }
   }
 

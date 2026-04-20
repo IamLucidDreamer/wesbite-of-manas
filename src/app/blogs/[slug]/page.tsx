@@ -16,41 +16,57 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
-  if (!post) return {};
+  try {
+    const resolvedParams = await params;
+    const { slug } = resolvedParams;
+    const post = getPostBySlug(slug);
+    
+    if (!post) return { title: "Post Not Found" };
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ofmanas.com";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ofmanas.com";
 
-  return {
-    title: post.title,
-    description: post.description,
-    openGraph: {
+    return {
       title: post.title,
       description: post.description,
-      type: "article",
-      publishedTime: post.date,
-      url: `${siteUrl}/blogs/${slug}`,
-      images: [
-        {
-          url: "/images/bg_hero.png", // Fallback to hero image if post has none
-          alt: post.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-    },
-  };
+      openGraph: {
+        title: post.title,
+        description: post.description,
+        type: "article",
+        publishedTime: post.date,
+        url: `${siteUrl}/blogs/${slug}`,
+        images: [
+          {
+            url: "/images/bg_hero.png",
+            alt: post.title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: post.title,
+        description: post.description,
+      },
+    };
+  } catch (error) {
+    console.error("Error in generateMetadata:", error);
+    return { title: "Error" };
+  }
 }
 
 export default async function PostPage({ params }: Props) {
-  const { slug } = await params;
+  const resolvedParams = await params;
+  if (!resolvedParams || !resolvedParams.slug) {
+    console.error("Missing slug in params");
+    notFound();
+  }
+
+  const { slug } = resolvedParams;
   const post = getPostBySlug(slug);
 
-  if (!post) notFound();
+  if (!post) {
+    console.error(`Post not found for slug: ${slug}`);
+    notFound();
+  }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ofmanas.com";
 
@@ -71,7 +87,7 @@ export default async function PostPage({ params }: Props) {
       "@type": "Person",
       name: homeData.landing.name,
     },
-    keywords: post.tags.join(", "),
+    keywords: (post.tags || []).join(", "),
   };
 
   return (
@@ -100,7 +116,7 @@ export default async function PostPage({ params }: Props) {
             <h1 className={styles.title} itemProp="headline">{post.title}</h1>
             <p className={styles.description} itemProp="description">{post.description}</p>
             <div className={styles.tags}>
-              {post.tags.map((tag) => (
+              {(post.tags || []).map((tag) => (
                 <span key={tag} className={styles.tag}>
                   {tag}
                 </span>
@@ -133,10 +149,15 @@ export default async function PostPage({ params }: Props) {
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  try {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (e) {
+    console.error("Error formatting date:", e);
+    return dateStr;
+  }
 }
