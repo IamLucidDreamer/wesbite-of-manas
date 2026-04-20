@@ -19,12 +19,12 @@ export default function LinkComp({ data, isActive, setSelectedIndicator, onClose
       className={styles.link}
       onMouseEnter={() => setSelectedIndicator(href)}
       custom={index}
-      variants={slide}
+      variants={slide as any}
       initial="initial"
       animate="enter"
       exit="exit"
     >
-      <MotionDiv variants={scale} animate={isActive ? "open" : "closed"} className={styles.indicator} />
+      <MotionDiv variants={scale as any} animate={isActive ? "open" : "closed"} className={styles.indicator} />
       <Link href={href} onClick={onClose}>{title}</Link>
     </MotionDiv>
   );

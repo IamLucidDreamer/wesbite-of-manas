@@ -46,11 +46,11 @@ export default function Preloader() {
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any },
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as any, delay: 0.3 },
     },
   };
 
@@ -59,14 +59,14 @@ export default function Preloader() {
 
   return (
     <MotionDiv
-      variants={slideUp}
+      variants={slideUp as any}
       initial="initial"
       exit="exit"
       className={styles.introduction as unknown as string}
     >
       {dimension.width > 0 && (
         <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
+          <motion.p variants={opacity as any} initial="initial" animate="enter">
             <span></span>
             {words[index]}
           </motion.p>
