@@ -14,7 +14,7 @@ const navItems = [
   { title: "Contact",    href: "/#contact" },
 ];
 
-const transition = { duration: 0.8, ease: [0.76, 0, 0.24, 1] };
+const transition = { duration: 0.8, ease: [0.76, 0, 0.24, 1] as any };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MotionDiv = motion.div as React.FC<any>;
