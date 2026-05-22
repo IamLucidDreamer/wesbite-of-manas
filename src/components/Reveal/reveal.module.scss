@@ -1,0 +1,63 @@
+.revealText {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 750ms cubic-bezier(0.2, 0.8, 0.2, 1), 
+              transform 750ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.revealText[data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.revealImage {
+  opacity: 0;
+  transform: scale(0.96);
+  will-change: opacity, transform;
+}
+
+@keyframes imagePopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.revealImage[data-revealed="true"] {
+  opacity: 1;
+  transform: scale(1);
+  animation: imagePopIn 650ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@media (max-width: 768px) {
+  .revealText {
+    transform: translateY(12px);
+    transition-duration: 550ms;
+  }
+  .revealImage[data-revealed="true"] {
+    animation-duration: 550ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealText, .revealImage {
+    transform: none;
+    transition: opacity 400ms ease-out;
+    transition-delay: 0ms !important;
+  }
+  .revealImage[data-revealed="true"] {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
