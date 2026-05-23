@@ -55,6 +55,20 @@ export default function Header() {
 
   const close = () => setIsActive(false);
 
+  const NavItem = [
+    { label: "writing", href: "/blogs" },
+    {
+      label: "github",
+      href: "https://github.com/IamLucidDreamer",
+      target: "_blank",
+    },
+    {
+      label: "linkedin ",
+      href: "https://www.linkedin.com/in/shuklamanas007/",
+      target: "_blank",
+    }
+  ];
+
   return (
     <>
       <div ref={header} className={styles.header}>
@@ -71,16 +85,12 @@ export default function Header() {
           </Magnetic>
 
           <div className={styles.nav}>
-            {[
-              { label: "about", href: "/#about" },
-              { label: "experience", href: "/#experience" },
-              { label: "stack", href: "/#stack" },
-              { label: "writing", href: "/#blogs" },
-              { label: "contact", href: "/#contact" },
-            ].map(({ label, href }) => (
+            {NavItem.map(({ label, href, target }) => (
               <Magnetic key={label}>
                 <div className={styles.el}>
-                  <a href={href}>{label}</a>
+                  <a href={href} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined}>
+                    {label}
+                  </a>
                   <div className={styles.indicator} />
                 </div>
               </Magnetic>

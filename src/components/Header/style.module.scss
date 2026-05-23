@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 800px;
+  max-width: 1280px;
   padding: 14px 40px;
   font-family: var(--font-inter), sans-serif;
   font-weight: 300;
@@ -39,7 +39,7 @@
   }
 
   .shukla {
-    transform: translateX(70px);
+    transform: translateX(10px);
   }
 
   .name {
@@ -80,11 +80,11 @@
       }
 
       .manas {
-        transform: translateX(-100px);
+        transform: translateX(-75px);
       }
 
       .shukla {
-        transform: translateX(-45px);
+        transform: translateX(-65px);
       }
     }
   }

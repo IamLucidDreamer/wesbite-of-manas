@@ -1,0 +1,126 @@
+.footer {
+  width: 100%;
+}
+
+.footerContact {
+  display: flex;
+  gap: 64px;
+  padding: 40px 0 40px;
+}
+
+.footerContactLeft {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerHeading {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.footerContactRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerParagraph {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(17px, 2vw, 19px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin: 0 0 40px;
+  max-width: 580px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.footerLink {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--text);
+  }
+}
+
+.separator {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 40px;
+  text-align: center;
+}
+
+.ninoStage {
+  height: 120px;
+  width: 100%;
+}
+
+.footerMetadata {
+  margin-bottom: 8px;
+  
+  span {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+.footerCopyright {
+  span {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .footerContact {
+    flex-direction: column;
+    gap: 40px;
+    padding: 32px 0 32px;
+  }
+  .footerContactLeft, .footerContactRight {
+    flex: none;
+    max-width: 100%;
+  }
+  .footerParagraph {
+    margin-bottom: 32px;
+  }
+  .footerBottom {
+    padding: 32px 0 32px;
+  }
+  .ninoStage {
+    height: 100px;
+  }
+}
