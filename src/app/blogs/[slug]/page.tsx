@@ -5,6 +5,20 @@ import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import type { Metadata } from "next";
 import homeData from "../../../../content/home.json";
 import styles from "./page.module.scss";
+import { Reveal } from "@/components/Reveal";
+
+const mdxComponents = {
+  h1: (props: any) => <Reveal as="h1" {...props} />,
+  h2: (props: any) => <Reveal as="h2" {...props} />,
+  h3: (props: any) => <Reveal as="h3" {...props} />,
+  h4: (props: any) => <Reveal as="h4" {...props} />,
+  p: (props: any) => <Reveal as="p" {...props} />,
+  ul: (props: any) => <Reveal as="ul" {...props} />,
+  ol: (props: any) => <Reveal as="ol" {...props} />,
+  blockquote: (props: any) => <Reveal as="blockquote" {...props} />,
+  img: (props: any) => <Reveal as="img" type="image" {...props} />,
+  hr: (props: any) => <Reveal as="hr" {...props} />,
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -99,48 +113,91 @@ export default async function PostPage({ params }: Props) {
       <div className={styles.container}>
         <nav className={styles.nav} aria-label="Back to blogs">
           <Link href="/blogs" className={styles.backLink}>
-            <span className={styles.backArrow}>←</span> All posts
+            <Reveal as="span" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span className={styles.backArrow}>←</span> All posts
+            </Reveal>
           </Link>
         </nav>
 
         <article className={styles.article} itemScope itemType="https://schema.org/BlogPosting">
           <header className={styles.header}>
-            <div className={styles.meta}>
+            <Reveal className={styles.meta}>
               <time className={styles.date} dateTime={post.date} itemProp="datePublished">
                 {formatDate(post.date)}
               </time>
               {post.readTime && (
                 <span className={styles.readTime}>{post.readTime}</span>
               )}
-            </div>
-            <h1 className={styles.title} itemProp="headline">{post.title}</h1>
-            <p className={styles.description} itemProp="description">{post.description}</p>
-            <div className={styles.tags}>
+            </Reveal>
+            <Reveal as="h1" className={styles.title} itemProp="headline">{post.title}</Reveal>
+            <Reveal as="p" className={styles.description} itemProp="description">{post.description}</Reveal>
+            <Reveal className={styles.tags}>
               {(post.tags || []).map((tag) => (
                 <span key={tag} className={styles.tag}>
                   {tag}
                 </span>
               ))}
-            </div>
+            </Reveal>
+            
+            <Reveal className={styles.aiSection}>
+              <span className={styles.aiLabel}>Open with AI:</span>
+              <div className={styles.aiButtons}>
+                <a 
+                  href={`https://chatgpt.com/?q=Summarize+this+article:+${encodeURIComponent(`${siteUrl}/blogs/${slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.aiButton}
+                >
+                  ChatGPT
+                </a>
+                <a 
+                  href={`https://claude.ai/new?q=Summarize+this+article:+${encodeURIComponent(`${siteUrl}/blogs/${slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.aiButton}
+                >
+                  Claude
+                </a>
+                <a 
+                  href={`https://grok.com/?q=Summarize+this+article:+${encodeURIComponent(`${siteUrl}/blogs/${slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.aiButton}
+                >
+                  Grok
+                </a>
+                <a 
+                  href={`https://gemini.google.com/app?q=Summarize+this+article:+${encodeURIComponent(`${siteUrl}/blogs/${slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.aiButton}
+                >
+                  Gemini
+                </a>
+              </div>
+            </Reveal>
+
             <meta itemProp="author" content={homeData.landing.name} />
           </header>
 
           <div className={styles.content} itemProp="articleBody">
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} components={mdxComponents} />
           </div>
         </article>
 
         <footer className={styles.footer} aria-label="Post navigation">
           <Link href="/blogs" className={styles.backLink}>
-            <span className={styles.backArrow}>←</span> Back to all posts
+            <Reveal as="span" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span className={styles.backArrow}>←</span> Back to all posts
+            </Reveal>
           </Link>
         </footer>
 
         <hr className={styles.rule} />
 
         <footer className={styles.siteFooter} aria-label="Site footer">
-          <span>© {new Date().getFullYear()} {homeData.landing.name}</span>
-          <span>v{homeData.updatedAt}</span>
+          <Reveal as="span">© {new Date().getFullYear()} {homeData.landing.name}</Reveal>
+          <Reveal as="span">v{homeData.updatedAt}</Reveal>
         </footer>
       </div>
     </main>
