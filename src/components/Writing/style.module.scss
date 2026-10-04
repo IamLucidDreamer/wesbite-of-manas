@@ -1,0 +1,181 @@
+.writingSection {
+  display: flex;
+  gap: 64px;
+  padding: 64px 0;
+  scroll-margin-top: 52px;
+}
+
+.writingLeft {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.writingRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.writingLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.writingDescription {
+  font-family: var(--font-display), serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.15;
+  max-width: 420px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+}
+
+.postRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 0;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.postRow:first-child {
+  padding-top: 0;
+}
+
+.postRow:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.postRow:hover {
+  transform: translateX(2px);
+}
+
+.postRow:hover .postTitle {
+  color: var(--accent);
+}
+
+.postTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.postMetaGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+.postCategory {
+  padding: 4px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--tag-green-bg);
+  color: var(--tag-green-text);
+  border: 1px solid transparent;
+
+  &[data-category="engineering"],
+  &[data-category="ai"] {
+    background: var(--tag-green-bg);
+    color: var(--tag-green-text);
+  }
+
+  &[data-category="systems"],
+  &[data-category="architecture"] {
+    background: var(--tag-blue-bg);
+    color: var(--tag-blue-text);
+  }
+
+  &[data-category="web"],
+  &[data-category="frontend"] {
+    background: var(--tag-orange-bg);
+    color: var(--tag-orange-text);
+  }
+
+  &[data-category="tools"],
+  &[data-category="developer-tools"] {
+    background: var(--tag-purple-bg);
+    color: var(--tag-purple-text);
+  }
+
+  &[data-category="javascript"],
+  &[data-category="react"],
+  &[data-category="nextjs"],
+  &[data-category="react-native"] {
+    background: var(--tag-yellow-bg);
+    color: var(--tag-yellow-text);
+  }
+
+  &[data-category="design"],
+  &[data-category="design-systems"],
+  &[data-category="design systems"],
+  &[data-category="animation"],
+  &[data-category="gsap"] {
+    background: var(--tag-rose-bg);
+    color: var(--tag-rose-text);
+  }
+}
+
+.allPosts {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.allPosts:hover {
+  color: var(--accent-hover);
+}
+
+.empty {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-3);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .writingSection {
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 0;
+  }
+  .writingLeft, .writingRight {
+    flex: none;
+  }
+}

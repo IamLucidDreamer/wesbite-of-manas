@@ -1,0 +1,139 @@
+.hero {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 0 80px;
+  scroll-margin-top: 52px;
+  min-height: 560px;
+}
+
+.heroLeft {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroRight {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 32px;
+  background: var(--bg-2);
+}
+
+.heroEyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.heroHeadline {
+  font-family: var(--font-display), serif;
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--text);
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.heroHeadlineHighlight {
+  color: var(--accent);
+}
+
+.heroIntro {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(17px, 2vw, 19px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 0 40px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.heroActions a {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.heroLinkPrimary {
+  color: var(--accent);
+  border-bottom-color: var(--accent) !important;
+}
+
+.heroLinkPrimary:hover {
+  color: var(--accent-hover) !important;
+  border-bottom-color: var(--accent-hover) !important;
+}
+
+.heroLinkSecondary {
+  color: var(--text-2);
+  border-bottom-color: var(--text-2) !important;
+}
+
+.heroLinkSecondary:hover {
+  color: var(--accent) !important;
+  border-bottom-color: var(--accent) !important;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.gridImage {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--bg-2);
+  display: block;
+}
+
+/* ── Divider ── */
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 64px;
+    padding: 24px 0 64px;
+  }
+  .heroLeft,
+  .heroRight {
+    flex: none;
+  }
+}

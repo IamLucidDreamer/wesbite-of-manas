@@ -1,14 +1,16 @@
 import "./globals.css";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Newsreader, IBM_Plex_Mono } from "next/font/google";
 import Header from "../components/Header";
+import Assistant from "../components/Assistant";
 import { ThemeProvider } from "../context/ThemeContext";
 import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const syne = Syne({
+const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-display", style: ["normal", "italic"] });
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "600", "700", "800"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ofmanas.com";
@@ -120,7 +122,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${inter.variable} ${syne.variable}`}>
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${inter.variable} ${newsreader.variable} ${plexMono.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -136,6 +138,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           {children}
+          <Assistant />
         </ThemeProvider>
       </body>
     </html>

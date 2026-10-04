@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 import homeData from "../../../content/home.json";
 import styles from "./page.module.scss";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Blogs",
@@ -34,13 +35,15 @@ export default function BlogPage() {
         <header className={styles.header}>
           <nav aria-label="Breadcrumb">
             <Link href="/" className={styles.backLink}>
-              <span className={styles.backArrow}>←</span> Home
+              <Reveal as="span" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span className={styles.backArrow}>←</span> Home
+              </Reveal>
             </Link>
           </nav>
-          <h1 className={styles.title}>Blogs</h1>
-          <p className={styles.subtitle}>
+          <Reveal as="h1" className={styles.title}>Blogs</Reveal>
+          <Reveal as="p" className={styles.subtitle}>
             Thoughts on frontend engineering, animation, and building things for the web.
-          </p>
+          </Reveal>
         </header>
 
         <section aria-label="Blog posts list">
@@ -49,7 +52,7 @@ export default function BlogPage() {
           ) : (
             <ul className={styles.postList} itemScope itemType="https://schema.org/ItemList">
               {posts.map((post) => (
-                <li key={post.slug} className={styles.postItem} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Reveal as="li" key={post.slug} className={styles.postItem} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
                   <Link href={`/blogs/${post.slug}`} className={styles.postLink} itemProp="url">
                     <div className={styles.postMeta}>
                       <time className={styles.date} dateTime={post.date}>{formatDate(post.date)}</time>
@@ -70,7 +73,7 @@ export default function BlogPage() {
                       Read post <span className={styles.arrow} aria-hidden="true">→</span>
                     </span>
                   </Link>
-                </li>
+                </Reveal>
               ))}
             </ul>
           )}
@@ -79,8 +82,8 @@ export default function BlogPage() {
         <hr className={styles.rule} />
 
         <footer className={styles.footer} aria-label="Site footer">
-          <span>© {new Date().getFullYear()} {homeData.landing.name}</span>
-          <span>v{homeData.updatedAt}</span>
+          <Reveal as="span">© {new Date().getFullYear()} {homeData.landing.name}</Reveal>
+          <Reveal as="span">v{homeData.updatedAt}</Reveal>
         </footer>
       </div>
     </main>
